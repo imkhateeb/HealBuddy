@@ -9,7 +9,6 @@ import './CSS/customformstyle.css'
 import Test from './component/Test';
 
 const clientID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-console.log(clientID);
 
 function App() {
   return (

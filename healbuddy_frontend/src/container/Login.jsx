@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import introVideo from '../assets/nature.mp4'
 import Googleauth from '../component/Googleauth';
-
+import logoImage from '../assets/logo.jpg';
 
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
@@ -10,7 +10,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 
 export default function Login() {
 
-  const onFinish = (values: any) => {
+  const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
 
@@ -31,9 +31,11 @@ export default function Login() {
         <div className='absolute top-0 right-0 bottom-0 left-0 flex flex-col justify-center items-center bg-blackOverlay'>
 
           <div className='p-5'>
-            {/* Logo */}
+          <img src={logoImage} alt='logo' className='w-20 h-20 mb-5 rounded-lg' />
+
           </div>
-          <div className='p-10 bg-white rounded-lg w-1/3'>
+          <div className='py-6 px-8 bg-white rounded-lg w-1/2 lg:w-1/3 max-md:w-5/6'>
+
             <h1 className='text-2xl font-bold'>Login here</h1>
             <p className='text-red py-2 px-3 animate-bounce transition-all duration-300 ease-in' >
               {/* Warning messages */}
@@ -41,54 +43,61 @@ export default function Login() {
 
 
             <div>
-
               <Form
                 name="normal_login"
                 className="login-form"
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
               >
-                <Form.Item
-                  name="username"
-                  rules={[{ required: true, message: 'Please input your Username!' }]}
-                >
-                  <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
-                </Form.Item>
-                <Form.Item
-                  name="password"
-                  rules={[{ required: true, message: 'Please input your Password!' }]}
-                >
-                  <Input
-                    prefix={<LockOutlined className="site-form-item-icon" />}
-                    type="password"
-                    placeholder="Password"
-                  />
-                </Form.Item>
-                <Form.Item>
-                <div className='flex justify-between'>
-
-                  <Form.Item name="remember" valuePropName="checked" noStyle>
-                    <Checkbox>Remember me</Checkbox>
+                <div className='my-3'>
+                  <Form.Item
+                    name="username"
+                    rules={[{ required: true, message: 'Please input your Username!' }]}
+                  >
+                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
                   </Form.Item>
-
-                  <a className="login-form-forgot" href="">
-                    Forgot password
-                  </a>
                 </div>
+                <div>
+
+                  <Form.Item
+                    name="password"
+                    rules={[{ required: true, message: 'Please input your Password!' }]}
+                  >
+                    <Input
+                      prefix={<LockOutlined className="site-form-item-icon" />}
+                      type="password"
+                      placeholder="Password"
+                    />
+                  </Form.Item>
+                </div>
+
+                <Form.Item>
+                  <div className='flex'>
+                    <div className='mr-3'>
+                      <Form.Item name="remember" valuePropName="checked" noStyle>
+                        <Checkbox className='max-sm:text-xs'>Remember me</Checkbox>
+                      </Form.Item>
+                    </div>
+
+                    <a className="login-form-forgot max-sm:text-xs" href="">
+                      Forgot password?
+                    </a>
+                  </div>
                 </Form.Item>
 
                 <Form.Item>
-                <div className='flex justify-between'>
-
-                  <Button type="default" htmlType="submit" className="login-form-button">
-                    Log in
-                  </Button><a href="/signup">register now!</a>
-                </div>
+                  <div className='flex items-center pt-3'>
+                    <Button type="default" htmlType="submit" className="login-form-button mr-3">
+                      Log in
+                    </Button>
+                    <a href="/signup">register now!</a>
+                  </div>
                 </Form.Item>
               </Form>
             </div>
 
-            <div>
+            <div className='flex flex-col items-center jus py-3 justify-center'>
+              <h1>OR</h1>
               <Googleauth />
             </div>
 
