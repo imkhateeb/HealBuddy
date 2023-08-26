@@ -7,11 +7,40 @@ import logoImage from '../assets/logo.jpg';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 
+import Client from './Client';
 
 export default function Login() {
+  const navigate = useNavigate();
+  const [trueUser, setTrueUser] = useState(true);
+  const [userAuthorized, setUserAuthorized] = useState(false);
 
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+  const onFinish = async (values) => {
+    const users = await Client.fetch(`*[_type == 'user']`);
+    let flag = 0;
+
+
+    users?.forEach(user => {
+      if (user.email === values.email) {
+        
+        if (user.password === values.password) {
+          flag = 1;
+          setUserAuthorized(true);
+          setTimeout(() => {
+            setUserAuthorized(false);
+            // localStorage.setItem("HealBuddyAuth", user._id);
+            // navigate("/");
+          }, 3000);
+        }
+      }
+    });
+
+
+    if (flag === 0) {
+      setTrueUser(false);
+      setTimeout(() => {
+        setTrueUser(true);
+      }, 3000);
+    }
   };
 
 
@@ -28,17 +57,23 @@ export default function Login() {
           className='w-full h-full object-cover'
         />
 
+        {userAuthorized &&
+          <div className='z-10 fixed m-auto top-4 bg-white py-2 px-3 rounded-lg border-2 border-green-400 text-green-500 text-center shadow-green-400 shadow-inner animate-slide-in ' >
+            Succefully authorized to HealBuddy
+          </div>
+        }
+
         <div className='absolute top-0 right-0 bottom-0 left-0 flex flex-col justify-center items-center bg-blackOverlay'>
 
           <div className='p-5'>
-          <img src={logoImage} alt='logo' className='w-20 h-20 mb-5 rounded-lg' />
+            <img src={logoImage} alt='logo' className='w-20 h-20 mb-5 rounded-lg' />
 
           </div>
           <div className='py-6 px-8 bg-white rounded-lg w-1/2 lg:w-1/3 max-md:w-5/6'>
 
             <h1 className='text-2xl font-bold'>Login here</h1>
-            <p className='text-red py-2 px-3 animate-bounce transition-all duration-300 ease-in' >
-              {/* Warning messages */}
+            <p className='text-red-500 py-2 px-3 animate-slide-in transition-all duration-300 ease-in' >
+              {(!trueUser && 'Enter valid credentials')}
             </p>
 
 
@@ -51,7 +86,7 @@ export default function Login() {
               >
                 <div className='my-3'>
                   <Form.Item
-                    name="username"
+                    name="email"
                     rules={[{ required: true, message: 'Please input your Username!' }]}
                   >
                     <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />

@@ -5,16 +5,16 @@ import introVideo from '../assets/nature.mp4';
 import Client from '../container/Client';
 
 
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Select } from 'antd';
 const { Option } = Select;
 
 export default function SetPassword() {
+   const navigate = useNavigate();
    const [docCreated, setDocCreated] = useState(false);
+   const [errorFound, setErrorFound] = useState(false);
    const { JSONData } = useParams();
    const decodedData = decodeURIComponent(JSONData);
    const data = JSON.parse(decodedData);
-   const navigate = useNavigate();
 
    const onFinish = (values) => {
 
@@ -32,14 +32,18 @@ export default function SetPassword() {
          .createIfNotExists(doc)
          .then((data) => {
             console.log(data);
+            setDocCreated(true);
+            setTimeout(() => {
+               setDocCreated(false);
+               navigate("/");
+            }, 3000);
          })
-         .catch((console.error));
+         .catch((error) => {
+            console.log("Error while creating doc using google auth", error);
+            setErrorFound(true);
+         });
 
-      setDocCreated(true);
-      setTimeout(() => {
-         setDocCreated(false);
-         navigate("/");
-      }, 3000);
+
 
    };
 
@@ -56,6 +60,14 @@ export default function SetPassword() {
                autoPlay
                className='w-full h-full object-cover'
             />
+            {docCreated &&
+               <div className='z-10 fixed m-auto top-4 bg-white py-2 px-3 rounded-lg border-2 border-green-400 text-green-500 text-center shadow-green-400 shadow-inner animate-slide-in ' >
+                  Succefully registered to HealBuddy
+               </div>
+            }{errorFound &&
+               <div className='z-10 fixed m-auto top-4 bg-white py-2 px-3 rounded-lg border-2 border-red-400 text-red-500 text-center shadow-red-400 shadow-inner animate-slide-in '>
+                  Error occured while registering, Try Again!
+               </div>}
 
             <div className='absolute top-0 right-0 bottom-0 left-0 flex flex-col justify-center items-center bg-blackOverlay'>
 
