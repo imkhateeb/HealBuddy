@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import introVideo from '../assets/nature.mp4';
 import Googleauth from '../component/Googleauth';
-import { Button, Checkbox, Form, Input, Radio, Select, } from 'antd';
+import { Button, Checkbox, Form, Input, Select, } from 'antd';
 import logoImage from '../assets/logo.jpg';
 import { v4 as uuidv4 } from 'uuid';
 import Client from './Client';
@@ -26,7 +26,7 @@ export default function Signup() {
   const [randomEntered, setRandomEntered] = useState("");
   const [formData, setFormData] = useState(null);
   const [isWrongOTP, setIsWrongOTP] = useState(false);
-const [docCreated, setDocCreated] = useState(false);
+  const [docCreated, setDocCreated] = useState(false);
 
   const [form] = Form.useForm();
   const onFinish = async (values) => {
@@ -65,23 +65,21 @@ const [docCreated, setDocCreated] = useState(false);
         })
         .catch((console.error));
 
-        setDocCreated(true);
-        setTimeout(() => {
-          setDocCreated(false);
-        }, 5000);
+      setDocCreated(true);
+      setTimeout(() => {
+        setDocCreated(false);
         navigate("/");
+      }, 3000);
 
     } else {
       setIsWrongOTP(true);
+      setIsGoingToRegister(false);
       setTimeout(() => {
         setIsWrongOTP(false);
+        setIsGoingToRegister(true);
       }, 3000);
     }
   }
-
-  // Mange the wrong field case states
-  // mamge the google login states
-  // Show a successfull login message
 
 
   return (
@@ -96,21 +94,26 @@ const [docCreated, setDocCreated] = useState(false);
           autoPlay
           className='w-full h-full object-cover'
         />
+
+        {/* Resolve this issue */}
         {docCreated &&
-        <div className='fixed right-3 top-3 bg-mainColor py-2 px-3 rounded-lg border-green-400 text-green-500 text-center' >
-          Succefull registered to HealBuddy
-        </div>
+          <div className='z-10 fixed m-auto top-4 bg-white py-2 px-3 rounded-lg border-2 border-green-400 text-green-500 text-center shadow-green-400 shadow-inner animate-slide-in ' >
+            Succefully registered to HealBuddy
+          </div>
         }
         <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay'>
           <div>
-            <img src={logoImage} alt='logo' className='w-20 h-20 mb-5 rounded-lg' />
+            <img src={logoImage} alt='logo' className='w-20 h-20 mb-2 max-sm:h-16 max-sm:w-16 rounded-lg' />
           </div>
-          <div className='py-6 px-8 bg-white rounded-lg w-1/2 lg:w-1/3 max-md:w-5/6'>
+          <div className='py-4 px-8 bg-white rounded-lg w-1/2 lg:w-1/3 max-md:w-5/6  max-sm:px-4 max-sm:py-2 max-sm:pb-3 max-md:py-4 max-md:px-6'>
 
-            <h1 className='text-black text-2xl font-bold'>Signup here</h1>
-            <p className='text-red py-2 px-3 animate-bounce transition-all duration-300 ease-in' >
-              {/* Warning messages */}
-            </p>
+            <h1 className='text-black text-2xl font-bold text-center'>Signup here</h1>
+            <div className='text-red-500 p-2 animate-fade-in transition-all duration-300 ease-in flex flex-col items-center justify-center'>
+              {componentDisabled && <p>Already login or CLEAR CATCH!!</p>}
+              {isEmailExist && <p>Email already exists!!</p>}
+              {isGoingToRegister && <p>Enter the OTP</p>}
+              {isWrongOTP && <p>Wrong OTP entered, check again and enter</p>}
+            </div>
 
             <div className='w-full flex justify-center'>
               {!localStorage.getItem('HealBuddyAuth') ? (
@@ -262,17 +265,12 @@ const [docCreated, setDocCreated] = useState(false);
                       >An OTP is sent to {formData.email}</p>
                       <div className='flex bg-mainColor p-2 rounded-lg'>
                         <input type='text' onChange={(e) => setRandomEntered(e.target.value)} value={randomEntered}
-                          className='outline-none bg-white rounded-lg mr-4 p-1'
+                          className='outline-none bg-white rounded-lg mr-4 p-1 px-3 w-20 border-2 border-gray-400'
                         />
                         <button type='button' onClick={verifyAndSave}
-                          className='py-1 px-2 text-white bg-blue-400 outline-none rounded-lg hover:bg-blue-500 transition-all duration-300 ease-in cursor-pointer' >Confirm</button>
+                          className='py-1 px-2 text-white bg-blue-400 outline-none rounded-lg hover:bg-blue-500 transition-all duration-300 ease-in cursor-pointer ' >Confirm</button>
                       </div>
                     </div>
-                  }
-
-                  {isWrongOTP && <p
-                    className='text-red animate-bounce'
-                  >Wrong OTP!</p>
                   }
 
                   {!localStorage.getItem("HealBuddyAuth") &&

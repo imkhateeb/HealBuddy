@@ -1,34 +1,50 @@
 import React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import { FcGoogle } from 'react-icons/fc';
-
-const accessUser = (tokenResponse) => {
-    const accessToken = tokenResponse.access_token;
-    // Make API request to UserInfo Endpoint
-    fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
-        headers: {
-            Authorization: `Bearer ${accessToken}`
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Process user profile data
-        console.log("User Profile Data:", data);
-    })
-    .catch(error => {
-        console.error("Error fetching user profile:", error);
-    });
-}
+import { useNavigate } from 'react-router-dom';
+import Client from '../container/Client';
 
 export default function GoogleAuth() {
+    const navigate = useNavigate();
+
+    const LoginOrSave = async (data) => {
+        const users = await Client.fetch(`*[_type == 'user']`);
+        users?.forEach(user => {
+            if (user.email === data.email) {
+                // TODO: Handle existing user
+            } else {
+                const jsonData = JSON.stringify(data);
+                const encodedData = encodeURIComponent(jsonData);
+                navigate(`/set-password/${encodedData}`);
+            }
+        });
+    }
+
+    const accessUser = (tokenResponse) => {
+        const accessToken = tokenResponse.access_token;
+        fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                LoginOrSave(data);
+            })
+            .catch(error => {
+                console.error("Error fetching user profile:", error);
+            });
+    }
+
     const login = useGoogleLogin({
         onSuccess: tokenResponse => accessUser(tokenResponse),
     });
+
     return (
-        <button 
-        type='button'
-        className='bg-white flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none shadow-md hover:shadow-xl max-sm:text-xs'
-        onClick={() => login()}>
+        <button
+            type='button'
+            className='bg-white flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none shadow-md hover:shadow-xl max-sm:text-xs'
+            onClick={() => login()}>
             <FcGoogle className='mr-4' /> Sign in with Google
         </button>
     )

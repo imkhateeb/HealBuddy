@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import introVideo from '../assets/nature.mp4'
+import introVideo from '../assets/nature.mp4';
 import Googleauth from '../component/Googleauth';
 import logoImage from '../assets/logo.jpg';
 

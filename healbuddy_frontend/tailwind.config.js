@@ -53,21 +53,17 @@ module.exports = {
       keyframes: {
         'slide-in': {
           '0%': {
-            '-webkit-transform': 'translateX(-200px)',
             transform: 'translateX(-200px)',
           },
           '100%': {
-            '-webkit-transform': 'translateX(0px)',
             transform: 'translateX(0px)',
           },
         },
         'slide-fwd': {
           '0%': {
-            '-webkit-transform': 'translateZ(0px)',
             transform: 'translateZ(0px)',
           },
           '100%': {
-            '-webkit-transform': 'translateZ(160px)',
             transform: 'translateZ(160px)',
           },
         },
@@ -79,43 +75,52 @@ module.exports = {
             opacity: '1',
           },
         },
-        'spin': {
+        spin: {
           '0%': {
             transform: 'rotate(0deg)',
           },
           '100%': {
             transform: 'rotate(360deg)',
           },
-          'fade-in-up': {
-            '0%': {
-              opacity: '0',
-              transform: 'translateY(20px)',
-            },
-            '100%': {
-              opacity: '1',
-              transform: 'translateY(0)',
-            },
+        },
+        'fade-in-up': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(20px)',
           },
-
-          'bounce': {
-            '0%, 20%, 50%, 80%, 100%': {
-              transform: 'translateY(0)',
-            },
-            '40%': {
-              transform: 'translateY(-30px)',
-            },
-            '60%': {
-              transform: 'translateY(-15px)',
-            },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
           },
-
-          'scale-up': {
-            '0%': {
-              transform: 'scale(0)',
-            },
-            '100%': {
-              transform: 'scale(1)',
-            },
+        },
+        bounce: {
+          '0%, 20%, 50%, 80%, 100%': {
+            transform: 'translateY(0)',
+          },
+          '40%': {
+            transform: 'translateY(-30px)',
+          },
+          '60%': {
+            transform: 'translateY(-15px)',
+          },
+        },
+        'scale-up': {
+          '0%': {
+            transform: 'scale(0)',
+          },
+          '100%': {
+            transform: 'scale(1)',
+          },
+        },
+        'cursor-blink': {
+          '0%': {
+            opacity: '0',
+          },
+          '50%': {
+            opacity: '1',
+          },
+          '100%': {
+            opacity: '0',
           },
         },
       },
@@ -123,10 +128,11 @@ module.exports = {
         'slide-in': 'slide-in 0.5s ease-out',
         'slide-fwd': 'slide-fwd 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',
         'fade-in': 'fade-in 0.5s ease-out',
-        'spin': 'spin 1s linear infinite',
+        spin: 'spin 1s linear infinite',
         'fade-in-up': 'fade-in-up 0.5s ease-out',
-        'bounce': 'bounce 1s ease-in-out infinite',
+        bounce: 'bounce 1s ease-in-out infinite',
         'scale-up': 'scale-up 0.5s ease-in-out',
+        'cursor-blink': 'cursor-blink 0.7s infinite',
       },
       transitionProperty: {
         height: 'height',

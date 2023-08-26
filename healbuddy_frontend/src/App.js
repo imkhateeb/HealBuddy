@@ -5,6 +5,7 @@ import Signup from './container/Signup';
 import Home from './container/Home';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import './CSS/customformstyle.css'
+import SetPassword from './component/SetPassword';
 
 import Test from './component/Test';
 
@@ -14,10 +15,11 @@ function App() {
   return (
     <GoogleOAuthProvider clientId={clientID}>
       <Routes>
-        <Route path='/*' element={<Home />} />
+        <Route path='set-password/:JSONData' element={<SetPassword />} />
         <Route path='login' element={<Login />} />
         <Route path='signup' element={<Signup />} />
         <Route path='test-page' element={<Test />} />
+        <Route path='/*' element={<Home />} />
       </Routes>
     </GoogleOAuthProvider>
   );
