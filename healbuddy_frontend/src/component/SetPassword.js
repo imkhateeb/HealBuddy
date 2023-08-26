@@ -35,6 +35,8 @@ export default function SetPassword() {
             setDocCreated(true);
             setTimeout(() => {
                setDocCreated(false);
+               localStorage.clear();
+               localStorage.setItem("HealBuddyAuth", doc._id);
                navigate("/");
             }, 3000);
          })
@@ -42,9 +44,6 @@ export default function SetPassword() {
             console.log("Error while creating doc using google auth", error);
             setErrorFound(true);
          });
-
-
-
    };
 
 

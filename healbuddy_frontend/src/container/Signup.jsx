@@ -41,19 +41,24 @@ export default function Signup() {
       gender,
     }
 
+    let flag = 0;
     const users = await Client.fetch(`*[_type == 'user']`);
     users?.forEach(user => {
       if (user.email === values.email) {
+        flag = 1;
         setIsEmailExist(true);
         setTimeout(() => {
           setIsEmailExist(false);
         }, 3000);
-      } else {
-        setFormData(doc);
-        SendEmail(values.fullName, values.email, `OTP is : ${randomSixDigitNumber}`);
-        setIsGoingToRegister(true);
+        return;
       }
     });
+
+    if (flag === 0) {
+      setFormData(doc);
+      SendEmail(values.fullName, values.email, `OTP is : ${randomSixDigitNumber}`);
+      setIsGoingToRegister(true);
+    }
   }
 
   const verifyAndSave = () => {
@@ -68,6 +73,8 @@ export default function Signup() {
       setDocCreated(true);
       setTimeout(() => {
         setDocCreated(false);
+        localStorage.clear();
+        localStorage.setItem("HealBuddyAuth", formData._id);
         navigate("/");
       }, 3000);
 

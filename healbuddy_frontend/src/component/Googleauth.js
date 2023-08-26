@@ -16,6 +16,8 @@ export default function GoogleAuth() {
       users?.forEach(user => {
          if (user.email === data.email) {
             setUserFound(true);
+            localStorage.clear();
+            localStorage.setItem("HealBuddyAuth", user._id);
             navigate("/");
          }
       });

@@ -27,8 +27,9 @@ export default function Login() {
           setUserAuthorized(true);
           setTimeout(() => {
             setUserAuthorized(false);
-            // localStorage.setItem("HealBuddyAuth", user._id);
-            // navigate("/");
+            localStorage.clear();
+            localStorage.setItem("HealBuddyAuth", user._id);
+            navigate("/");
           }, 3000);
         }
       }
