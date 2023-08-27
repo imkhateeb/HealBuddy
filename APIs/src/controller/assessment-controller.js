@@ -23,4 +23,6 @@ const getResponse = async (req, res) => {
   }
 };
 
-module.exports = getResponse;
+module.exports = {
+  getResponse,
+};
