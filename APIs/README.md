@@ -23,3 +23,16 @@
 | Parameter | Type   | Description                         |
 | :-------- | :----- | :---------------------------------- |
 | `null`    | `null` | **Required**. No Parameter Required |
+
+### Content Moderation API
+
+```
+ localhost:3008/api/v1/contentmoderation
+```
+
+#### method - `get`
+
+| Parameter | Type   | Description                         |
+| :-------- | :----- | :---------------------------------- |
+| `textContent`    | `String` | **Required**. Parameter textContent to check Moderation of content |
+
