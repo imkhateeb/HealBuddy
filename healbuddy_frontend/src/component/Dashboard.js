@@ -4,14 +4,15 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import ProfilePicture from './ProfilePicture';
 import { GiRunningNinja } from 'react-icons/gi';
 import { MdOutlineSchedule } from 'react-icons/md';
-import {FcSalesPerformance} from 'react-icons/fc';
-import {AiFillMessage} from 'react-icons/ai';
-import {MdOutlineSportsGymnastics} from 'react-icons/md';
-import {BsFillPostcardHeartFill} from 'react-icons/bs';
-import {MdFeedback} from 'react-icons/md';
-import {SiVirustotal} from 'react-icons/si';
-import {MdRecentActors} from 'react-icons/md';
-import {GrCertificate} from 'react-icons/gr';
+import { FcSalesPerformance } from 'react-icons/fc';
+import { AiFillMessage } from 'react-icons/ai';
+import { MdOutlineSportsGymnastics } from 'react-icons/md';
+import { BsFillPostcardHeartFill } from 'react-icons/bs';
+import { MdFeedback } from 'react-icons/md';
+import { SiVirustotal } from 'react-icons/si';
+import { MdRecentActors } from 'react-icons/md';
+import { GrCertificate } from 'react-icons/gr';
+import {GrUserExpert} from 'react-icons/gr';
 
 const isNoteActiveStyle = 'flex py-1 pl-4 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize my-1';
 const isActiveStyle = 'flex py-2 gap-3 font-extrabold border-r-2 border-black transition-all duration-200 ease-in-out capitalize my-2 pl-6';
@@ -20,7 +21,6 @@ const isActiveStyle = 'flex py-2 gap-3 font-extrabold border-r-2 border-black tr
 export default function Dashboard({ user, role }) {
   const navigate = useNavigate();
   const [confirmLogout, setConfirmLogout] = useState(false);
-
   function handleLogout() {
     localStorage.removeItem("HealBuddyAuth");
     localStorage.clear();
@@ -44,60 +44,66 @@ export default function Dashboard({ user, role }) {
           <NavLink to={'/'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><HiHome fontSize={25} />Home</NavLink>
         </div>
 
-        { role === 'exprt' ?
+        {role === 'expert' &&
           <>
             <div className='p-2 pr-0'>
-              <NavLink to={`/${user?._id}/expert/activecases`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><GiRunningNinja fontSize={25} />Running cases</NavLink>
+              <NavLink to={`/expert/${user?._id}/active-cases`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><GiRunningNinja fontSize={25} />Running cases</NavLink>
             </div>
             <div className='p-2 pr-0'>
-              <NavLink to={`/${user?._id}/expert/schedules`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
+              <NavLink to={`/expert/${user?._id}/schedules`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
                 <MdOutlineSchedule fontSize={25} />Your Schedules
               </NavLink>
             </div>
             <div className='p-2 pr-0'>
-              <NavLink to={`/${user?._id}/expert/posts`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
+              <NavLink to={`/expert/${user?._id}/posts`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
                 <BsFillPostcardHeartFill fontSize={25} />Your Posts
               </NavLink>
             </div>
             <div className='p-2 pr-0'>
-              <NavLink to={`/${user?._id}/expert/feedback`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
+              <NavLink to={`/expert/${user?._id}/feedback`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
                 <MdFeedback fontSize={25} />Client's feedback
               </NavLink>
             </div>
             <div className='p-2 pr-0'>
-              <NavLink to={`/${user?._id}/expert/recent-cases`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
+              <NavLink to={`/expert/${user?._id}/recent-cases`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
                 <MdRecentActors fontSize={25} />Recent Cases
               </NavLink>
             </div>
             <div className='p-2 pr-0'>
-              <NavLink to={`/${user?._id}/expert/total-cases`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
+              <NavLink to={`/expert/${user?._id}/total-cases`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
                 <SiVirustotal fontSize={25} />Total Cases
               </NavLink>
             </div>
           </>
-          :
+        }
+        {role === "client" &&
           <>
             <div className='p-2 pr-0'>
-              <NavLink to={`/${user?._id}/client/performance`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><FcSalesPerformance fontSize={25} />Your performance</NavLink>
+              <NavLink to={`/client/${user?._id}/performance`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><FcSalesPerformance fontSize={25} />Your performance</NavLink>
             </div>
             <div className='p-2 pr-0'>
-              <NavLink to={`/${user?._id}/client/schedules`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
+              <NavLink to={`/client/${user?._id}/schedules`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
                 <MdOutlineSchedule fontSize={25} />Schedules
               </NavLink>
             </div>
             <div className='p-2 pr-0'>
-              <NavLink to={`/${user?._id}/client/exercises`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
+              <NavLink to={`/client/${user?._id}/exercises`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
                 <MdOutlineSportsGymnastics fontSize={25} />Exercises
               </NavLink>
             </div>
             <div className='p-2 pr-0'>
-              <NavLink to={`/${user?._id}/client/messages`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
+              <NavLink to={`/client/${user?._id}/messages`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
                 <AiFillMessage fontSize={25} />Messages
               </NavLink>
             </div>
             <div className='p-2 pr-0'>
-              <NavLink to={`/${user?._id}/schedules`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
+              <NavLink to={`/client/${user?._id}/certificates`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
                 <GrCertificate fontSize={25} />Scores & Certificates
+              </NavLink>
+            </div>
+            <div className='p-2 pr-0'>
+              <NavLink to={`/client/${user?._id}/search-experts`} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}>
+                <GrUserExpert fontSize={25} />Our Experts
               </NavLink>
             </div>
           </>

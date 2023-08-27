@@ -34,7 +34,7 @@ export default function Navbar({ user, role }) {
         <div className='mx-2'>
           <NavLink to={'/'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><HiHome fontSize={25} />Home</NavLink>
         </div>
-        <NavLink to={'/community'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><CgCommunity fontSize={25} />Community Posts</NavLink>
+        <NavLink to={'/community'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><CgCommunity fontSize={25} />Community</NavLink>
         <NavLink to={'/blog'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><FaBlogger fontSize={25} />Blogs</NavLink>
         {role === "expert" && (
           <>
@@ -53,13 +53,13 @@ export default function Navbar({ user, role }) {
         </div>
       ) : (
         !confirmLogout && (
-        <button type='button' className='shadow-lg flex justify-center rounded-lg items-center cursor-pointer py-2 px-4 hover:shadow-md' onClick={() => setConfirmLogout(!confirmLogout)}>
+        <button type='button' className='shadow-lg flex justify-center rounded-lg items-center cursor-pointer py-2 px-4 hover:shadow-md animate-fade-in-up' onClick={() => setConfirmLogout(!confirmLogout)}>
           Logout
         </button>
         )
       )}
       {confirmLogout && (
-          <div className='shadow-lg flex justify-evenly rounded-lg items-center cursor-pointer py-2 px-4 hover:shadow-md'>
+          <div className='shadow-lg flex justify-evenly rounded-lg items-center cursor-pointer py-2 px-4 hover:shadow-md animate-fade-in-up'>
             <button type='button' onClick={handleLogout} className='py-1 px-4 bg-red-500 text-white hover:bg-red-400 transition-all duration-300 rounded-lg outline-none' >Delete</button>
             <button type='button' onClick={() => setConfirmLogout(false)} className='py-1 px-4 text-red-500 hover:text-red-400 transition-all duration-300 rounded-lg outline-none'>Cancel</button>
           </div>

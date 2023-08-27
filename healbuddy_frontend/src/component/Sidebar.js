@@ -35,7 +35,6 @@ export default function Sidebar({ user, role }) {
           <NavLink to={'/'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><HiHome fontSize={25} />Home</NavLink>
         </div>
         <NavLink to={'/community'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><CgCommunity fontSize={25} />Community</NavLink>
-        <NavLink to={'/services'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><GrServices fontSize={25} />Services</NavLink>
         <NavLink to={'/blog'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><FaBlogger fontSize={25} />Blog</NavLink>
         {role === "expert" && (
           <>
@@ -47,24 +46,28 @@ export default function Sidebar({ user, role }) {
         )}
       </div>
 
-      {!user ? (
-        <div className='shadow-lg flex justify-evenly rounded-lg items-center cursor-pointer py-2 px-4 hover:shadow-md'>
-          <Link to="/login" className='py-1 px-4 bg-blue-500 text-white hover:bg-blue-400 transition-all duration-300 rounded-lg outline-none' >Login</Link>
-          <Link to="/signup" className='py-1 px-4 text-blue-500 hover:text-blue-400 transition-all duration-300 rounded-lg outline-none'>Signup</Link>
-        </div>
-      ) : (
-        !confirmLogout && (
-          <button type='button' className='shadow-lg flex justify-center rounded-lg items-center cursor-pointer py-2 px-4 hover:shadow-md' onClick={() => setConfirmLogout(!confirmLogout)}>
-            Logout
-          </button>
-        )
-      )}
-      {confirmLogout && (
-        <div className='shadow-lg flex justify-evenly rounded-lg items-center cursor-pointer py-2 px-4 hover:shadow-md'>
-          <button type='button' onClick={handleLogout} className='py-1 px-4 bg-red-500 text-white hover:bg-red-400 transition-all duration-300 rounded-lg outline-none' >Delete</button>
-          <button type='button' onClick={() => setConfirmLogout(false)} className='py-1 px-4 text-red-500 hover:text-red-400 transition-all duration-300 rounded-lg outline-none'>Cancel</button>
-        </div>
-      )}
+
+      <div className='w-full flex justify-center'>
+        {!user ? (
+          <div className='shadow-lg flex justify-evenly rounded-lg items-center cursor-pointer py-2 px-4 hover:shadow-md animate-fade-in-up w-2/3 m-auto'>
+            <Link to="/login" className='py-1 px-4 bg-blue-500 text-white hover:bg-blue-400 transition-all duration-300 rounded-lg outline-none' >Login</Link>
+            <Link to="/signup" className='py-1 px-4 text-blue-500 hover:text-blue-400 transition-all duration-300 rounded-lg outline-none'>Signup</Link>
+          </div>
+        ) : (
+          !confirmLogout && (
+            <button type='button' className='shadow-lg flex justify-center rounded-lg items-center cursor-pointer py-2 px-4 hover:shadow-md animate-fade-in-up w-2/3 mx-auto' onClick={() => setConfirmLogout(!confirmLogout)}>
+              Logout
+            </button>
+          )
+        )}
+        {confirmLogout && (
+          <div className='shadow-lg flex justify-evenly rounded-lg items-center cursor-pointer py-2 px-4 hover:shadow-md animate-fade-in-up w-2/3 mx-auto'>
+            <button type='button' onClick={handleLogout} className='py-1 px-4 bg-red-500 text-white hover:bg-red-400 transition-all duration-300 rounded-lg outline-none' >Delete</button>
+            <button type='button' onClick={() => setConfirmLogout(false)} className='py-1 px-4 text-red-500 hover:text-red-400 transition-all duration-300 rounded-lg outline-none'>Cancel</button>
+          </div>
+        )}
+      </div>
+      <Link to={`/${user?._id}/create-client`} >Create role</Link>
     </div>
   )
 }

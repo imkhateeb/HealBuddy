@@ -39,12 +39,23 @@ export default {
          type: 'string',
       },
       {
+         name: 'age',
+         title: 'Age',
+         type: 'number',
+      },
+      {
          name: 'image',
          title: 'Image',
          type: 'image',
          Options : {
             hotspot: true,
          }
+      },
+      {
+         name: 'initialAssessments',
+         title: 'InitialAssessments',
+         type: 'array',
+         of: [{type : 'initialAssessment'}]
       },
    ]
 }
