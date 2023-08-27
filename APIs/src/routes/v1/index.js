@@ -1,7 +1,7 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const AssessmentController = require('../../controller/assessment-controller');
+const AssessmentController = require("../../controller/assessment-controller");
 
 //Mental-Health-Assessment-Routes
 

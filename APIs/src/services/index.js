@@ -1,3 +1,3 @@
-module.exports={
-    MentalHealthAssessmentServices : require("./assessment-services.js")
-}
+module.exports = {
+  MentalHealthAssessmentServices: require("./assessment-services.js"),
+};
