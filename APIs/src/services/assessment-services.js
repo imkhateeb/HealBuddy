@@ -1,4 +1,3 @@
-const { json } = require("body-parser");
 const getResponse = require("../utils/assessment-gpt-api.cjs");
 
 class MentalHealthAssessmentServices {
