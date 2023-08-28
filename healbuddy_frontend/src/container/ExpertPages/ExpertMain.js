@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
+import { useParams } from 'react-router-dom';
 import RoundSpinner from '../../component/Spinners/RoundSpinner';
 import { states, districts } from '../../utils/ActiveArea';
-import { BsEmojiSmile } from 'react-icons/bs';
 import Client from '../Client';
 import { userQuery } from '../../utils/data';
-import { useParams } from 'react-router-dom';
-import InitialExercises from './InitialExercises';
 import { Link } from 'react-router-dom';
 
+import DocsUpload from './DocsUpload';
 
-export default function ClientMain() {
+export default function ExpertMain() {
   const { userId } = useParams();
   const [user, setUser] = useState(null);
   const [role, setRole] = useState("");
@@ -19,6 +18,7 @@ export default function ClientMain() {
   const [totalDistricts, setTotalDistricts] = useState([]);
   const [state, setState] = useState("");
   const [district, setDistrict] = useState("");
+  const [experience, setExperience] = useState("")
 
 
   useEffect(() => {
@@ -44,27 +44,28 @@ export default function ClientMain() {
     queryData();
   }, []);
 
+  // console.log(user);
+  // console.log(localStorage.getItem("TempRoles"));
 
-  function saveInfo() {
+  function saveInfo(){
     const doc = {
       userId,
       fullName,
       age,
-      district
+      district,
+      experience,
     }
     localStorage.setItem("TempRoles", JSON.stringify(doc));
     window.location.reload();
   }
 
-  
-
-
-  if (role !== "") {
+if (role !== "") {
     return (
       <div className='h-[84vh] w-full flex items-center justify-center'>
         <div className='flex flex-col items-center justify-center'>
           <RoundSpinner />
-          <h1 className='text-xl max-sm:text-xs font-bold max-md:text-lg'>It looks like your role is decided<Link to={'/'} className='py-2 no-underline hover:border-b-2 border-gray-300 hover:bg-blue-500 transition-all duration-300 hover:text-white px-3 rounded-lg ml-1'>Go back to home</Link></h1>
+          <h1 className='text-xl max-sm:text-xs font-bold max-md:text-lg'>It looks like your role is decided
+          <Link to={'/'} className='py-2 px-3 no-underline hover:border-b-2 border-gray-300 hover:bg-blue-500 transition-all duration-300 hover:text-white ml-1 rounded-lg'>Go back to home</Link></h1>
         </div>
       </div>
     )
@@ -73,13 +74,15 @@ export default function ClientMain() {
       return (
         <div className='w-full h-screen flex flex-col items-center justify-center'>
           <div className='md:w-1/2 max-md:w-3/5 max-sm:w-11/12 bg-white rounded-2xl flex flex-col p-5 max-sm:p-3 animate-fade-in duration-75'>
-            <h1 className='text-xl max-sm:text-sm flex justify-between items-center font-bold max-md:text-lg'>Let's start with the basic questions <BsEmojiSmile fontSize={25} /></h1>
+            <h1 className='text-xl max-sm:text-sm flex justify-between items-center font-bold max-md:text-lg'>Please fill some more details</h1>
             <hr className='mt-3 mb-5 px-2' />
             <div className='flex flex-col'>
 
               <input type='text' name='fullName' value={fullName} onChange={(e) => setFullName(e.target.value)} className='border-2 border-gray-300 rounded-lg outline-none py-2 px-4 my-2' placeholder='Your full name...' />
 
               <input type='Number' name='age' value={age} onChange={(e) => setAge(e.target.value)} className='border-2 border-gray-300 rounded-lg outline-none py-2 px-4 my-2' placeholder='How old you are?' />
+
+              <input type='Number' name='experience' value={experience} onChange={(e) => setExperience(e.target.value)} className='border-2 border-gray-300 rounded-lg outline-none py-2 px-4 my-2' placeholder='Year of experience in this field?' />
 
               <select className='border-2 border-gray-300 rounded-lg outline-none py-2 px-4 cursor-pointer my-2' onChange={(e) => setState(e.target.value)}>
                 <option value={'null'} className='border-2 border-gray-300 rounded-lg outline-none py-2 px-4 my-2'>select State</option>
@@ -109,9 +112,9 @@ export default function ClientMain() {
       return (
         <div className='w-full h-screen flex flex-col items-center justify-center'>
           <div className='md:w-1/2 max-md:w-3/5 max-sm:w-11/12 bg-white rounded-2xl flex flex-col p-5 max-sm:p-3 animate-fade-in duration-75'>
-            <h1 className='text-xl max-sm:text-sm flex justify-between items-center font-bold max-md:text-lg'>Now answer some real questions <BsEmojiSmile fontSize={25} /></h1>
+            <h1 className='text-xl max-sm:text-sm text-center font-bold max-md:text-lg'>**Upload the required documents**</h1>
             <hr className='mt-3 mb-5 px-2' />
-            <InitialExercises 
+            <DocsUpload 
               user={user && user}
               userId={userId}
             />

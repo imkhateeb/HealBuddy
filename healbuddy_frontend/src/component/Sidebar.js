@@ -67,7 +67,8 @@ export default function Sidebar({ user, role }) {
           </div>
         )}
       </div>
-      <Link to={`/${user?._id}/create-client`} >Create role</Link>
+      <Link to={`/${user?._id}/create-client`} >Create Client</Link>
+      <Link to={`/${user?._id}/create-expert`} >Create Expert</Link>
     </div>
   )
 }

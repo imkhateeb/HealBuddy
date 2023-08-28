@@ -37,7 +37,7 @@ export default function HomeDisplay({ user, role }) {
         <Route path='/community' element={<Community user={user} />} />
 
         {/* Expert Routes */}
-        <Route path='/create-expert' element={<CreateExpert user={user} />} />
+        <Route path='/:userId/create-expert' element={<CreateExpert />} />
 
         <Route path='/expert/:userId/active-cases' element={<RunningCases user={user} />} />
 

@@ -29,6 +29,11 @@ export default {
          type: 'string',
       },
       {
+         name: 'experience',
+         title: 'Experience',
+         type: 'string',
+      },
+      {
          name: 'gender',
          title: 'Gender',
          type: 'string',
@@ -41,7 +46,7 @@ export default {
       {
          name: 'age',
          title: 'Age',
-         type: 'number',
+         type: 'string',
       },
       {
          name: 'image',
@@ -57,5 +62,11 @@ export default {
          type: 'array',
          of: [{type : 'initialAssessment'}]
       },
+      {
+         name: 'expertDocs',
+         title: 'ExpertDocs',
+         type: 'array',
+         of: [{type: 'expertDoc'}]
+      }
    ]
 }
