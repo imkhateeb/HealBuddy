@@ -28,7 +28,7 @@ export default function Dashboard({ user, role }) {
     window.location.reload();
   }
   return (
-    <div className='flex flex-col justify-between bg-mainColor md:w-275 min-w-210 overflow-y-auto hide-scrollbar shadow-lg'>
+    <div className='sticky top-10 left-0 flex flex-col justify-between bg-mainColor md:w-275 min-w-210 overflow-y-auto hide-scrollbar shadow-lg h-[95vh]'>
       <div className='mt-10 ml-5 md:mt-0'>
         <ProfilePicture
           userId={user?._id}

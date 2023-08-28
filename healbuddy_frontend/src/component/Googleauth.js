@@ -12,17 +12,24 @@ export default function GoogleAuth() {
       const users = await Client.fetch(`*[_type == 'user']`);
       const jsonData = JSON.stringify(data);
       const encodedData = encodeURIComponent(jsonData);
-
+  
+      let userMatched = false; // Create a flag to track if the user is found
+  
       users?.forEach(user => {
-         if (user.email === data.email) {
-            setUserFound(true);
-            localStorage.clear();
-            localStorage.setItem("HealBuddyAuth", user._id);
-            navigate("/");
-         }
+        if (user.email === data.email) {
+          console.log("Matched");
+          setUserFound(true);
+          localStorage.clear();
+          localStorage.setItem("HealBuddyAuth", user._id);
+          navigate("/");
+          userMatched = true; // Set the flag to true when a match is found
+        }
       });
-      {!userFound && navigate(`/set-password/${encodedData}`);}
-   }
+  
+      if (!userMatched) {
+        navigate(`/set-password/${encodedData}`);
+      }
+    };
 
    const accessUser = (tokenResponse) => {
       const accessToken = tokenResponse.access_token;

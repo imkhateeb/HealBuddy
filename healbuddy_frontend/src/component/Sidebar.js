@@ -24,11 +24,7 @@ export default function Sidebar({ user, role }) {
   }
 
   return (
-    <div className='flex flex-col bg-mainColor h-full min-w-210 hide-scrollbar'>
-      <Link to="/" className='mt-12 mb-5'>
-        <img src={bannerImage} alt="banner" className='w-full rounded-lg' />
-      </Link>
-
+    <div className='flex flex-col bg-mainColor h-full min-w-210 hide-scrollbar w-full'>
 
       <div className='border-gray-500 flex flex-col'>
         <div className='py-2 '>

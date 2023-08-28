@@ -80,16 +80,16 @@ export default function Home() {
         {toggleDashboard && (
           <div className='fixed left-0 top-0 w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-fade-in flex flex-col'>
             <div className='absolute w-full top-0 flex justify-end items-center p-2'>
-              <AiFillCloseCircle fontSize={40} className='cursor-pointer' onClick={() => setToggleDashboard(false)} />
+              <AiFillCloseCircle fontSize={40} className='cursor-pointer z-10' onClick={() => setToggleDashboard(false)} />
             </div>
             <Dashboard user={user && user} role={(role === "expert") || ( role === "client") ? role : ""} closeToggle={setToggleDashboard} />
           </div>
         )}
 
         {toggleSidebar &&
-          <div className='fixed top-0 right-0 w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-fade-in flex'>
-            <div className='absolute w-full flex justify-end items-center p-2'>
-              <AiFillCloseCircle fontSize={40} className='cursor-pointer' onClick={() => setToggleSidebar(false)} />
+          <div className='w-4/5 fixed top-0 right-0 h-screen overflow-y-auto shadow-md z-[100] animate-fade-in flex flex-col bg-mainColor'>
+            <div className='w-full flex justify-start items-center p-2'>
+              <AiFillCloseCircle fontSize={40} className='cursor-pointer z-10' onClick={() => setToggleSidebar(false)} />
             </div>
             <Sidebar user={user && user} role={(role === "expert") || ( role === "client") ? role : ""} closeToggle={setToggleSidebar} />
           </div>
