@@ -60,7 +60,7 @@ export default function Navbar({ user, role }) {
       )}
       {confirmLogout && (
           <div className='shadow-lg flex justify-evenly rounded-lg items-center cursor-pointer py-2 px-4 hover:shadow-md animate-fade-in-up'>
-            <button type='button' onClick={handleLogout} className='py-1 px-4 bg-red-500 text-white hover:bg-red-400 transition-all duration-300 rounded-lg outline-none' >Delete</button>
+            <button type='button' onClick={handleLogout} className='py-1 px-4 bg-red-500 text-white hover:bg-red-400 transition-all duration-300 rounded-lg outline-none' >Confirm</button>
             <button type='button' onClick={() => setConfirmLogout(false)} className='py-1 px-4 text-red-500 hover:text-red-400 transition-all duration-300 rounded-lg outline-none'>Cancel</button>
           </div>
         )}

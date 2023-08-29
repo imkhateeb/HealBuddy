@@ -14,7 +14,7 @@ export default function ExpertFrame({user}) {
           </div>
           {user && !user?.role && (
             <Link to={`/${user?._id}/create-expert`} className='py-2 px-6 my-3 rounded-lg bg-blue-500 text-white hover:bg-blue-400 cursor-pointer transition-all duration-300 ease-in text-center w-60'>
-              Apply as an Expert
+              Be Our Expert
             </Link>
           )}
           {!user && (
