@@ -123,6 +123,24 @@ module.exports = {
             opacity: '0',
           },
         },
+        'fade-out': {
+          '0%': {
+            opacity: '1',
+          },
+          '100%': {
+            opacity: '0',
+          },
+        },
+        'fade-out-up': {
+          '0%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+          '100%': {
+            opacity: '0',
+            transform: 'translateY(-20px)',
+          },
+        },
       },
       animation: {
         'slide-in': 'slide-in 0.5s ease-out',
@@ -133,6 +151,8 @@ module.exports = {
         bounce: 'bounce 1s ease-in-out infinite',
         'scale-up': 'scale-up 0.5s ease-in-out',
         'cursor-blink': 'cursor-blink 0.7s infinite',
+        'fade-out': 'fade-out 0.5s ease-out',
+        'fade-out-up': 'fade-out-up 0.5s ease-out',
       },
       transitionProperty: {
         height: 'height',

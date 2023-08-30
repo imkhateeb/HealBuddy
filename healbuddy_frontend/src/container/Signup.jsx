@@ -62,7 +62,7 @@ export default function Signup() {
   }
 
   const verifyAndSave = () => {
-    if (randomEntered == randomSixDigitNumber) {
+    if (randomEntered === randomSixDigitNumber) {
       !isEmailExist && Client
         .createIfNotExists(formData)
         .then((data) => {

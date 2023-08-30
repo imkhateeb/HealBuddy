@@ -6,23 +6,21 @@ import Home from './container/Home';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import './CSS/customformstyle.css'
 import SetPassword from './component/SetPassword';
-
-import Test from './component/Test';
-import APITest from './component/APITest';
+import ScrollAnimation from './container/ScrollAnimations';
 
 const clientID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function App() {
   return (
     <GoogleOAuthProvider clientId={clientID}>
-      <Routes>
-        <Route path='set-password/:JSONData' element={<SetPassword />} />
-        <Route path='login' element={<Login />} />
-        <Route path='signup' element={<Signup />} />
-        <Route path='test-page' element={<Test />} />
-        <Route path='/*' element={<Home />} />
-        <Route path='/api-test' element={<APITest />} />
-      </Routes>
+      <ScrollAnimation>
+        <Routes>
+          <Route path='set-password/:JSONData' element={<SetPassword />} />
+          <Route path='login' element={<Login />} />
+          <Route path='signup' element={<Signup />} />
+          <Route path='/*' element={<Home />} />
+        </Routes>
+      </ScrollAnimation>
     </GoogleOAuthProvider>
   );
 }

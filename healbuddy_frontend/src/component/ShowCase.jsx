@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import bannerImage from '../assets/banner.jpg';
-import logoImage from '../assets/logo.jpg';
-import { GiThink } from 'react-icons/gi';
-import { Link } from 'react-router-dom';
+import showCaseBanner from '../assets/showCaseBanner.jpg';
 import { userQuery } from '../utils/data';
 import Client from '../container/Client';
 import Roundspinner from './Spinners/RoundSpinner';
@@ -10,6 +7,7 @@ import ProfilePage from '../container/ProfilePage';
 import WhyHealBuddy from '../container/ShowCase/WhyHealBuddy';
 import ClientFrame from '../container/ShowCase/ClientFrame';
 import ExpertFrame from '../container/ShowCase/ExpertFrame';
+import OurNumbers from '../container/ShowCase/OurNumbers';
 
 export default function ShowCase() {
   const [user, setUser] = useState(null);
@@ -34,12 +32,13 @@ export default function ShowCase() {
   } else if (!user || (user && !user?.role)) {
     return (
       <div className='w-full py-2 px-2'>
-        <div className='animate-fade-in duration-200 ease-linear'>
-          <img src={bannerImage} alt='branding-image' className='w-full rounded-3xl object-cover' />
+        <div className='fade-in duration-200 ease-linear'>
+          <img src={showCaseBanner} alt='branding-image' className='w-full rounded-3xl object-cover' />
         </div>
         <WhyHealBuddy />
         <ClientFrame user={user && user} />
         <ExpertFrame user={user && user} />
+        <OurNumbers />
       </div>
     );
   } else {

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import introVideo from '../assets/nature.mp4';
 import Googleauth from '../component/Googleauth';
 import logoImage from '../assets/logo.jpg';
@@ -115,9 +115,9 @@ export default function Login() {
                       </Form.Item>
                     </div>
 
-                    <a className="login-form-forgot max-sm:text-xs" href="">
+                    <Link className="login-form-forgot max-sm:text-xs" to={'/'}>
                       Forgot password?
-                    </a>
+                    </Link>
                   </div>
                 </Form.Item>
 

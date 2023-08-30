@@ -1,5 +1,5 @@
 export const MentalHealthQuestions = (data) => {
-   if (data == 1) {
+   if (data === 1) {
       const mentalHealthQuestion1 = [
          {
             Question: "How often do you feel a sense of purpose in your activities?",
@@ -97,7 +97,7 @@ export const MentalHealthQuestions = (data) => {
 
       return mentalHealthQuestion1;
    }
-   if (data == 2) {
+   if (data === 2) {
       const mentalHealthQuestionsSet2 = [
          {
             Question: "How often do you compare yourself to others?",
@@ -193,7 +193,7 @@ export const MentalHealthQuestions = (data) => {
       ];
       return mentalHealthQuestionsSet2;
    }
-   if (data == 3) {
+   if (data === 3) {
       const mentalHealthQuestionsSet3 = [
          {
             Question: "How well do you manage stressors in your life?",
@@ -300,7 +300,7 @@ export const MentalHealthQuestions = (data) => {
       ];
       return mentalHealthQuestionsSet3;
    }
-   if ( data == 4 ){
+   if ( data === 4 ){
       const mentalHealthQuestionsSet4 = [
          {
              Question: "How often do you engage in physical exercise?",
@@ -407,7 +407,7 @@ export const MentalHealthQuestions = (data) => {
      ];
       return mentalHealthQuestionsSet4;
    }
-   if ( data == 5 ){
+   if ( data === 5 ){
       const mentalHealthQuestionsSet5 = [
          {
              Question: "How often do you feel a sense of self-doubt?",
