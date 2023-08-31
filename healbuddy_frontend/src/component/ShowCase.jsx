@@ -8,7 +8,12 @@ import WhyHealBuddy from '../container/ShowCase/WhyHealBuddy';
 import ClientFrame from '../container/ShowCase/ClientFrame';
 import ExpertFrame from '../container/ShowCase/ExpertFrame';
 import OurNumbers from '../container/ShowCase/OurNumbers';
+import ClientFeedback from '../container/ShowCase//ClientFeedback';
+import ExpertFeedback from '../container/ShowCase/ExpertFeedback';
+import StoryOfTheDay from '../container/ShowCase/StoryOfTheDay';
+import Footer from '../container/ShowCase/Footer';
 
+// 7087935684
 export default function ShowCase() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -28,7 +33,7 @@ export default function ShowCase() {
   }, []);
 
   if (loading) {
-    return (<div className='w-full h-[90vh] flex items-center justify-center'><Roundspinner /></div>);
+    return (<div className='w-full h-[90vh] flex flex-col items-center justify-center'><Roundspinner /><p className='font-bold'>Making things ready for you</p></div>);
   } else if (!user || (user && !user?.role)) {
     return (
       <div className='w-full py-2 px-2'>
@@ -39,6 +44,10 @@ export default function ShowCase() {
         <ClientFrame user={user && user} />
         <ExpertFrame user={user && user} />
         <OurNumbers />
+        <ClientFeedback />
+        <ExpertFeedback />
+        <StoryOfTheDay />
+        <Footer />
       </div>
     );
   } else {

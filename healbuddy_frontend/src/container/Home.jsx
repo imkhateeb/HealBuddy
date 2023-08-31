@@ -30,12 +30,22 @@ export default function Home() {
       Client.fetch(query)
         .then((data) => {
           setUser(data[0]);
-          setRole(data[0].role);
+          setTheRole(data[0]);
         })
         .catch((console.error));
     }
     queryData();
   }, []);
+
+  function setTheRole(data){
+    if ( data?.role === 'expert' ){
+      setRole('expert');
+    } else if ( data?.role === 'client' ){
+      setRole('client');
+    } else {
+      setRole("");
+    }
+  }
 
 
   useEffect(() => {
@@ -78,7 +88,7 @@ export default function Home() {
 
 
         {toggleDashboard && (
-          <div className='fixed left-0 top-0 w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-fade-in flex flex-col'>
+          <div className='fixed left-0 top-0 w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-fade-in flex flex-col rounded-l-3xl shadow-lg hover:shadow-2xl transition-all duration-300'>
             <div className='absolute w-full top-0 flex justify-end items-center p-2'>
               <AiFillCloseCircle fontSize={40} className='cursor-pointer z-10' onClick={() => setToggleDashboard(false)} />
             </div>
@@ -87,11 +97,11 @@ export default function Home() {
         )}
 
         {toggleSidebar &&
-          <div className='w-4/5 fixed top-0 right-0 h-screen overflow-y-auto shadow-md z-[100] animate-fade-in flex flex-col bg-mainColor'>
+          <div className='w-4/5 fixed top-0 right-0 h-screen overflow-y-auto z-[100] animate-fade-in flex flex-col bg-mainColor rounded-l-3xl shadow-lg hover:shadow-2xl transition-all duration-300'>
             <div className='w-full flex justify-start items-center p-2'>
               <AiFillCloseCircle fontSize={40} className='cursor-pointer z-10' onClick={() => setToggleSidebar(false)} />
             </div>
-            <Sidebar user={user && user} role={(role === "expert") || ( role === "client") ? role : ""} closeToggle={setToggleSidebar} />
+            <Sidebar user={user && user} role={role && role} closeToggle={setToggleSidebar} />
           </div>
         }
 

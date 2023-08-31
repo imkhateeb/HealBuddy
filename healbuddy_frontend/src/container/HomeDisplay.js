@@ -20,6 +20,7 @@ import ClientSchedules from './ClientPages/ClientSchedules';
 import SearchExperts from './ClientPages/SearchExperts';
 import ClientMain from './ClientPages/ClientMain';
 import CreateExpert from './ExpertPages/ExpertMain';
+import Feedback from './Feedback';
 
 export default function HomeDisplay({ user, role }) {
   return (
@@ -35,6 +36,8 @@ export default function HomeDisplay({ user, role }) {
         <Route path='/ai-chatbot' element={<AIChatbot user={user} />} />
 
         <Route path='/community' element={<Community user={user} />} />
+
+        <Route path='/feedback' element={<Feedback />} />
 
         {/* Expert Routes */}
         <Route path='/:userId/create-expert' element={<CreateExpert />} />

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import bannerImage from '../assets/banner.jpg';
 import { HiHome } from 'react-icons/hi';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { CgCommunity } from 'react-icons/cg';
-import { GrServices } from 'react-icons/gr';
 import { FaBlogger } from 'react-icons/fa';
 import { BsWechat } from 'react-icons/bs';
 import { BsFillPinFill } from 'react-icons/bs';
+import { MdFeedback } from 'react-icons/md';
 
 export default function Sidebar({ user, role }) {
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ export default function Sidebar({ user, role }) {
   }
 
   return (
-    <div className='flex flex-col bg-mainColor h-full min-w-210 hide-scrollbar w-full'>
+    <div className='flex flex-col bg-mainColor h-full min-w-210 hide-scrollbar w-full justify-evenly'>
 
       <div className='border-gray-500 flex flex-col'>
         <div className='py-2 '>
@@ -32,6 +31,8 @@ export default function Sidebar({ user, role }) {
         </div>
         <NavLink to={'/community'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><CgCommunity fontSize={25} />Community</NavLink>
         <NavLink to={'/blog'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><FaBlogger fontSize={25} />Blog</NavLink>
+        <NavLink to={'/feedback'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><MdFeedback fontSize={25} />Feedback</NavLink>
+
         {role === "expert" && (
           <>
             <NavLink to={'/ai-chatbot'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><BsWechat fontSize={25} />24/7 Chat</NavLink>
@@ -63,8 +64,6 @@ export default function Sidebar({ user, role }) {
           </div>
         )}
       </div>
-      <Link to={`/${user?._id}/create-client`} >Create Client</Link>
-      <Link to={`/${user?._id}/create-expert`} >Create Expert</Link>
     </div>
   )
 }

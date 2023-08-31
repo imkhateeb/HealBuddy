@@ -6,6 +6,8 @@ import { CgCommunity } from 'react-icons/cg';
 import { FaBlogger } from 'react-icons/fa';
 import { BsWechat } from 'react-icons/bs';
 import { BsFillPinFill } from 'react-icons/bs';
+import {MdFeedback} from 'react-icons/md';
+
 
 const isNoteActiveStyle = 'flex flex-col items-center py-2 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize mx-5';
 const isActiveStyle = 'flex flex-col items-center py-2 gap-3 font-extrabold border-b-2 border-black transition-all duration-200 ease-in-out capitalize mx-4';
@@ -36,6 +38,7 @@ export default function Navbar({ user, role }) {
         </div>
         <NavLink to={'/community'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><CgCommunity fontSize={25} />Community</NavLink>
         <NavLink to={'/blog'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><FaBlogger fontSize={25} />Blogs</NavLink>
+        <NavLink to={'/feedback'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><MdFeedback fontSize={25} />Feedback</NavLink>
         {role === "expert" && (
           <>
             <NavLink to={'/ai-chatbot'} className={({ isActive }) => isActive ? isActiveStyle : isNoteActiveStyle}><BsWechat fontSize={25} />24/7 Chat</NavLink>
