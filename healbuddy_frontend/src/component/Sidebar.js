@@ -51,7 +51,7 @@ export default function Sidebar({ user, role }) {
             <Link to="/signup" className='py-1 px-4 text-blue-500 hover:text-blue-400 transition-all duration-300 rounded-lg outline-none'>Signup</Link>
           </div>
         ) : (
-          !confirmLogout && (
+          !confirmLogout && !user?.role && (
             <button type='button' className='shadow-lg flex justify-center rounded-lg items-center cursor-pointer py-2 px-4 hover:shadow-md animate-fade-in-up w-2/3 mx-auto' onClick={() => setConfirmLogout(!confirmLogout)}>
               Logout
             </button>

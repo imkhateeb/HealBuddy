@@ -88,7 +88,7 @@ export default function Home() {
 
 
         {toggleDashboard && (
-          <div className='fixed left-0 top-0 w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-fade-in flex flex-col rounded-l-3xl shadow-lg hover:shadow-2xl transition-all duration-300'>
+          <div className='fixed left-0 top-0 w-4/5 bg-mainColor h-screen overflow-y-auto shadow-md z-10 animate-fade-in flex flex-col rounded-r-3xl shadow-lg hover:shadow-2xl transition-all duration-300'>
             <div className='absolute w-full top-0 flex justify-end items-center p-2'>
               <AiFillCloseCircle fontSize={40} className='cursor-pointer z-10' onClick={() => setToggleDashboard(false)} />
             </div>

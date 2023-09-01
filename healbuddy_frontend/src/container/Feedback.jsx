@@ -94,7 +94,7 @@ export default function Feedback() {
                 !(feedback.postedBy.image) ?
                   logoImage :
                   urlFor(feedback.postedBy.image)?.url()
-            } alt="user-dp" className='w-1/3 h-auto rounded-full object-cover max-sm:w-14 max-md:w-24 md:w-32 xl:w-44 mr-5'
+            } alt="user-dp" className='w-1/3 h-auto rounded-full object-cover max-sm:w-14 max-md:w-24 md:w-32 xl:w-40 mr-5'
             />
             <div>
               <h1 className='max-md:text-2xl text-3xl font-bold my-1'>{feedback?.name}</h1>

@@ -29,7 +29,7 @@ export default function Dashboard({ user, role }) {
   }
   return (
     <div className='sticky top-10 left-0 flex flex-col justify-between bg-mainColor md:w-275 min-w-210 overflow-y-auto hide-scrollbar shadow-lg h-[95vh]'>
-      <div className='mt-10 ml-5 md:mt-0'>
+      <div className='ml-5 md:mt-0'>
         <ProfilePicture
           userId={user?._id}
           height={20}
@@ -124,7 +124,7 @@ export default function Dashboard({ user, role }) {
         </Link>
         {confirmLogout && (
           <div className='w-full shadow-lg flex justify-evenly rounded-lg items-center cursor-pointer py-4 px-4 hover:shadow-md animate-slide-in'>
-            <button type='button' onClick={handleLogout} className='py-2 px-4 bg-red-500 text-white hover:bg-red-400 transition-all duration-300 rounded-lg outline-none' >Delete</button>
+            <button type='button' onClick={handleLogout} className='py-2 px-4 bg-red-500 text-white hover:bg-red-400 transition-all duration-300 rounded-lg outline-none' >Confirm</button>
             <button type='button' onClick={() => setConfirmLogout(false)} className='py-2 px-4 text-red-500 hover:text-red-400 transition-all duration-300 rounded-lg outline-none'>Cancel</button>
           </div>
         )}
