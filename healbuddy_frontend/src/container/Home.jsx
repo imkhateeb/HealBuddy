@@ -4,7 +4,6 @@ import { userQuery } from '../utils/data';
 import Client from './Client';
 
 
-import { AiFillCloseCircle } from 'react-icons/ai';
 
 import Navbar from '../component/Navbar';
 import Sidebar from '../component/Sidebar';
@@ -12,6 +11,7 @@ import Dashboard from '../component/Dashboard';
 import HomeDisplay from './HomeDisplay';
 import logoImage from '../assets/logo.jpg';
 
+import { AiFillCloseCircle } from 'react-icons/ai';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
 
